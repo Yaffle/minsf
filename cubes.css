@@ -1,0 +1,202 @@
+nav a {
+  display: list-item;
+}
+
+article {
+  display: block;
+  border-bottom: 1px solid silver;
+  margin-top: 1em;
+}
+
+BODY {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 800px;
+  font-family: monospace;
+  font-size: 12pt;
+}
+
+P {
+  text-indent: 32px;
+  text-align: justify;
+}
+
+H1,
+H2,
+H3 {
+  text-align: center;
+}
+
+SAMP {
+  padding: 4px;
+}
+
+SPAN.conj {
+  font-size: 12px;
+  font-family: monospace;
+}
+
+SPAN.conj IMG {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+TABLE {
+  text-indent: 0px;
+  font-size: 10pt;
+  text-align: center;
+  vertical-align: middle;
+  empty-cells: show;
+}
+
+TABLE.simple {
+  text-align: justify;
+}
+
+TABLE.simple TD {
+  border: 0;
+}
+
+TABLE CAPTION {
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-size: larger;
+}
+
+TABLE TD {
+  border: 1px solid #a0a0ac;
+}
+
+TABLE TD.top {
+  background-color: #D0D0D0;
+}
+
+TABLE.cset {
+  display: inline;
+  height: 1px;
+  border: 0px;
+  text-indent: 0px;
+  font-family: monospace;
+}
+
+TABLE.cset TD {
+  font-size: 10pt;
+  border: 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+TABLE.cset TR {
+  height: 1px;
+}
+
+TABLE.cset TD IMG {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+TABLE.consabstable TD {
+  vertical-align: top;
+  border: 0;
+}
+
+TABLE.constable TD,
+TABLE.mintable TD,
+sTABLE.cubestable TD {
+  border: 1px solid #a0a0ac;
+  text-align: center;
+}
+
+TABLE.mintable TABLE.cset TD {
+  border: 0;
+}
+
+TABLE.mintable TR.toker {
+  background-color: #D0D0D0;
+}
+
+TABLE.mintable TD.ker {
+  background-color: #9090FD;
+}
+
+TABLE.mintable TD.formark {
+  border: 0;
+}
+
+IMG.vimg {
+  margin: 1;
+  padding: 1px;
+  display: block;
+}
+
+IMG.brace {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+IMG.letter {
+  width: 18px;
+  vertical-align: middle;
+}
+
+TABLE.forkarno {
+  text-align: left;
+}
+
+TABLe.forkarno TD {
+  border: 0;
+}
+
+TABLE.karno TD {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #a0a0ac;
+}
+
+TABLE.valtable TD {
+  font-weight: bold;
+}
+
+TABLE.valtable TD.top {
+  background-color: #D0D0D0;
+  font-size: 10pt;
+  border: 1px solid #a0a0ac;
+  text-align: center;
+  font-weight: bold;
+}
+
+TABLE.mlinks TD {
+  background-color: #ADD8E6;
+}
+
+TABLE.wbrace {
+  display: inline;
+  height: 1px;
+  border: 0px;
+}
+
+TABLE.wbrace TD {
+  border: 0;
+}
+
+TABLE.wbrace TR {
+  height: 1px;
+}
+
+TABLE.wbrace TD IMG {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+
+TABLE.table11 { font-size: 12px; }
+TABLE.table11 TD{ border: 0; }
