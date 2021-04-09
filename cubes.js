@@ -356,7 +356,7 @@ function cubesset_tocset(tocolumn,showbraces){
     return "&#216;";//пустое множество!
   var r='';
   if(tocolumn){
-    r='<table cellpadding=0 cellspacing=0 class="cset" style="display: inline-table;"><tr>'+(showbraces?'<td><img src="imgs/lbrace.png" width=8></td>':'') +'<td>'+this.a[0].tocube();
+    r='<table cellpadding="0" cellspacing="0" class="cset" style="display: inline-table;"><tr>'+(showbraces?'<td><img src="imgs/lbrace.png" width="8"></td>':'') +'<td>'+this.a[0].tocube();
     if(this.a.length>8){ //выводим по 3 штуки в ряд, чтобы сократить длиннющие столбцы
       for(var i=1;i<this.a.length;i++)
         r+= (i%3==0?'<br>':', ')+this.a[i].tocube();
@@ -364,7 +364,7 @@ function cubesset_tocset(tocolumn,showbraces){
       for(var i=1;i<this.a.length;i++)
         r+='<br>'+this.a[i].tocube();
     }
-    r+='</td>'+(showbraces?'<td><img src="imgs/rbrace.png" width=8></td>':'')+'</tr></table>';
+    r+='</td>'+(showbraces?'<td><img src="imgs/rbrace.png" width="8"></td>':'')+'</tr></table>';
   }else{
     r=(showbraces?'{ ':'')+this.a[0].tocube();
     for(var i=1;i<this.a.length;i++)

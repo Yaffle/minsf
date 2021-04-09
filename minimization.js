@@ -177,7 +177,7 @@ function minimization_getanalyse(){
   
   // Для начала выведем все получившиеся дизъюнкции с обозначениями f1 f2...
   z=0;
-  var tt='<h3 id="3">3. Анализ полученных результатов</h3><p>Все результаты:<br>';
+  var tt='<h3 id="3">3. Анализ полученных результатов</h3><p>Все результаты:</p><br>';
 
   for(i=0;i<bb.length;i++){
     tt+= '<br><br>'+bb[i];
@@ -227,12 +227,12 @@ function minimization_getanalyse(){
 
 
   var ht= '<h3>АНАЛИЗ</h3>'+
- 	'<p>По таблице истинности видно, что минимизация функции проведена верно. '+
-	'<p>В результате минимизации получили минимальные дизъюнктивные нормальные формы:'+
-	'<OL><LI>Доопределив функцию нулями, методом Квайна получили МДНФ цены '+this.MDNFcost[0]+
-	'<LI>Доопределив функцию единицами, методом карт Карно получили МДНФ цены '+this.MDNFcost[1]+
-	'<LI>Доопределяя функцию по ходу выполнения алгоритма, методом кубических покрытий получили МДНФ цены '+this.MDNFcost[2]+
-	'</OL><p>Метод кубических покрытий приводит к наименьшей МДНФ. Это связано с тем, что минимизируется не полностью определенная функция. В результате минимальная форма принимает на наборах, на которых исходная функция не определена, такие значения, которые соответствуют наиболее оптимальному покрытию. Из всех методов наиболее трудоемким оказывается также метод кубических покрытий, но он удобен для программной реализации минимизации. Наименее трудоемким оказался метод Квайне.';
+ 	'<p>По таблице истинности видно, что минимизация функции проведена верно. </p>'+
+	'<p>В результате минимизации получили минимальные дизъюнктивные нормальные формы:</p>'+
+	'<OL><LI>Доопределив функцию нулями, методом Квайна получили МДНФ цены '+this.MDNFcost[0]+'</LI>'+
+	'<LI>Доопределив функцию единицами, методом карт Карно получили МДНФ цены '+this.MDNFcost[1]+'</LI>'+
+	'<LI>Доопределяя функцию по ходу выполнения алгоритма, методом кубических покрытий получили МДНФ цены '+this.MDNFcost[2]+'</LI>'+
+	'</OL><p>Метод кубических покрытий приводит к наименьшей МДНФ. Это связано с тем, что минимизируется не полностью определенная функция. В результате минимальная форма принимает на наборах, на которых исходная функция не определена, такие значения, которые соответствуют наиболее оптимальному покрытию. Из всех методов наиболее трудоемким оказывается также метод кубических покрытий, но он удобен для программной реализации минимизации. Наименее трудоемким оказался метод Квайне.</p>';
 
   return tt+t+ht+'<br>';
 }
@@ -336,8 +336,8 @@ function minimization_getliteraturelist(){
   var html = ''+
  	'<H2 id="4">4 Список литературы</H2>'+
 	'<OL>'+
-	'<LI><a target="_blank_" href="'+mylink+'">'+mylink+'</a>'+
-	'<LI><a target="_blank_" href="'+mylink2+'">'+mylink2+'</a>'+
+	'<LI><a target="_blank_" href="'+mylink+'">'+mylink+'</a></LI>'+
+	'<LI><a target="_blank_" href="'+mylink2+'">'+mylink2+'</a></LI>'+
 //	'<LI>Новиков Ф.А. Дискретная математика для программистов. - Спб, 2000.'+
 //	'<LI>Тулин И.А. СХЕМОТЕХНИКА ЮНИТА 1 ОСНОВЫ ТЕОРИИ ЦИФРОВЫХ УСТРОЙСТВ. - МОСКВА, 2002.'+
 	'</OL>';
@@ -374,12 +374,12 @@ function minimization_findZ(method){
   var step=0;
   
   // 1.
-  if(method==2) html += "<table class=simple><tr><td>K(f) = </td><td>"+Cstep.tocset(1,1)+"</td>";
+  if(method==2) html += "<table class=\"simple\"><tr><td>K(f) = </td><td>"+Cstep.tocset(1,1)+"</td>";
 
   // 2.
   Cstep.deletesubcubes();
 
-  if(method==2) html += "<td> => C<sub>"+step+"</sub> =></td><td>"+Cstep.tocset(1,1)+'</td></tr></table>';
+  if(method==2) html += "<td> =&gt; C<sub>"+step+"</sub> =&gt;</td><td>"+Cstep.tocset(1,1)+'</td></tr></table>';
 
   // 3 + 4 + 5 + 6.2
   var i,j,dim,d,t1,t2,t3,haveabsorb;
@@ -446,7 +446,7 @@ function minimization_findZ(method){
 
     // 6.1
     Cstep1.deletesubcubes();
-    if(method==2) html += 'C<sub>'+(step+1)+'</sub>=>'+Cstep1.tocset(1,1)+'<br>';
+    if(method==2) html += 'C<sub>'+(step+1)+'</sub>=&gt;'+Cstep1.tocset(1,1)+'<br>';
   
     Z.addcset(Zstep);
     Cstep = Cstep1;
@@ -459,10 +459,10 @@ function minimization_findZ(method){
       html+= "Z = Z<sub>0</sub>";
       for(i=1;i<step;i++)
         html+= "&cup;Z<sub>"+i+"</sub>";
-      html += '<br>Z=>'+Z.tocset(1,1);
+      html += '<br>Z=&gt;'+Z.tocset(1,1);
   }
   if(method==0){
-      html += '<p>СкДНФ: <br><SAMP>'+Z.todnf()+'</SAMP></p>';
+      html += '<p>СкДНФ:<br><SAMP>'+Z.todnf()+'</SAMP></p>';
   }
   if(method==1){
 	html='';
@@ -513,7 +513,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
       tb = '<table cellpadding="0" cellspacing="0" class="mintable"><caption>Таблица операции вычитания</caption><tr><td class="top">'+(OPERA?"":"<br>")+'</td>';
       for(i=0;i<Zstep.a.length;i++)
         tb += '<td class="top">'+Zstep.a[i].tocube()+'</td>';
-      tb+='<td>';
+      tb+='</tr>';
     }
 
 
@@ -526,7 +526,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
       c = new cubesset();
       c.a.push(Zstep.a[i]);
       if(method==2)
-        tb += '<td class="top">'+c.tocset(2);
+        tb += '<td class="top">'+c.tocset(2)+'</td>';
 
       for(j=0;j<Zstep.a.length;j++){
         if(i!=j)
@@ -536,6 +536,8 @@ function minimization_extraction(Zstep,L,E,method,startstep){
       }
       if(method==2)
         tb += (c.isempty()? '<td class="formark"></td>' :'<td class="formark">v</td>');
+      if(method==2) 
+        tb += '</tr>';
 
       cinter=c.intercset(L);
       if(!c.isempty() && !cinter.isempty() ){
@@ -563,6 +565,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
       tb = '<table cellpadding="0" cellspacing="0" class="mintable"><caption>Получение L<sub>'+(step+1)+'</sub>:</caption><tr><td>'+(OPERA?"":"<br>")+'</td>';
       for(i=0;i<Estep.a.length;i++)
         tb += '<td>'+Estep.a[i].tocube()+'</td>';
+      tb+='</tr>';
       tb+='<tr><td>'+L.tocset(2)+'</td>';
     }
 
@@ -575,6 +578,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
     }
 
     if(method==2){
+      tb += '</tr>';
       tb += '</table>';
       if(isres)
         html += tb;
@@ -595,7 +599,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
     }
 
     if(!Estep.isempty() && method==0) html+=(this.first? '<br>Ядро: ' : '<br>Псевдоядро: ')+Estep.todnf();
-    if(method==2) html+='L<sub>'+(step+1)+'</sub>:'+L.tocset(1,1)+'<br> <img align=middle class="letter" src="imgs/zc.png"><sub>'+(step+1)+'</sub>=Z<sub>'+step+'</sub>-E<sub>'+step+'</sub>';
+    if(method==2) html+='L<sub>'+(step+1)+'</sub>:'+L.tocset(1,1)+'<br> <img align="middle" class="letter" src="imgs/zc.png"><sub>'+(step+1)+'</sub>=Z<sub>'+step+'</sub>-E<sub>'+step+'</sub>';
     this.first = 0;
 
     // 3.
@@ -610,7 +614,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
     if(method==0) html+=(ord1?'<br>До упорядочивания:'+t2+'<br>После упорядочивания:':'')+'<br>';
 
     if(method==2) html+=(ord1?'<br>До упорядочивания:'+t2+'<br>После упорядочивания:':'')+'<br>'+buildtableforcubes(Zstep1,L,E);
-    if(method==2) html+= '<img align=middle class="letter" src="imgs/zc.png"><sub>'+(step+1)+'</sub> => Z<sub>'+(step+1)+'</sub><br>' + 'Z<sub>'+(step+1)+'</sub>:'+Zstep1.tocset(1,1)+'<br>';//?
+    if(method==2) html+= '<img align="middle" class="letter" src="imgs/zc.png"><sub>'+(step+1)+'</sub> =&gt; Z<sub>'+(step+1)+'</sub><br>' + 'Z<sub>'+(step+1)+'</sub>:'+Zstep1.tocset(1,1)+'<br>';//?
 
     Zstep = Zstep1;
     step++;
@@ -676,9 +680,12 @@ function minimization_extraction(Zstep,L,E,method,startstep){
 }
 
 function build_cubes_table(Cstep,stable,step){// Cstep для левых и верхних полей
-  var html='<table cellspacing="0" cellpadding="0" class="cubestable"><caption>Таблица операции C<sub>'+step+'</sub>*C<sub>'+step+'</sub></caption><tr><td class="top" nowrap>';
+  var html='<table cellspacing="0" cellpadding="0" class="cubestable"><caption>Таблица операции C<sub>'+step+'</sub>*C<sub>'+step+'</sub></caption>';
+  html+='<tr>';
+  html+='<td class="top" nowrap></td>';
   for(var i=0;i<Cstep.a.length;i++)
     html+='<td class="top" nowrap>'+Cstep.a[i].tocube()+'</td>';
+  html+='</tr>';
   for(i=0;i<Cstep.a.length;i++){
     html+='<tr>';
     html += '<td class="top" nowrap>'+Cstep.a[i].tocube()+'</td>';
@@ -736,7 +743,8 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
     }
 
     t+='<table class="karno">';
-    t+='<tr><td><img src="imgs/karno32.png"></td>';
+    t+='<tr>';
+    t+='<td><img src="imgs/karno32.png"></td>';
     for(i=0;i<4;i++)
       t+='<td class="top">'+cc[i]+'</td>';
     t+='</tr>';
@@ -767,8 +775,9 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
       t+='</tr>';
     }
     t+='</table>';
+    t+='</td>';
+    if (k % 2 === 1) t += '</tr>';
   }
-  t+='</td></tr>';
   t+='</table></center>';
   return t;
 }
@@ -779,18 +788,19 @@ function buildtableforcubes(z,c,newz){
   var pt,pp,pz,zz;
   for(i=0;i<c.a.length;i++)
     t += '<td class="top">'+c.a[i].tocube(true) + '</td>';
+  t += '</tr>';
   for(i=0;i<z.a.length;i++){
     pp = '<td class="top">'+z.a[i].tocube() + '</td>';
     pt = '<tr>';
     for(j=0;j<c.a.length;j++){
       zz  = c.a[j].mark=='>' && z.a[i].mark == '*' && c.a[j].issub(z.a[i]);
 
-      pp += (zz? '<td class="ker">' : '<td>')+( c.a[j].issub(z.a[i]) ? '+' : (OPERA?"":"<br>") );
+      pp += (zz? '<td class="ker">' : '<td>')+( c.a[j].issub(z.a[i]) ? '+' : (OPERA?"":"<br>") ) + '</td>';
     }
    if(z.a[i].mark == '*')
      pt = '<tr class="toker">';
 
-    t+= pt+pp;
+    t+= pt+pp + '</tr>';
   }
   t+="</table>";
   return t+'<br>';
