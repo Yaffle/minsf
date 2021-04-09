@@ -152,7 +152,12 @@ function minimization_getminimization(st,det,method){
 
   html += '<H3>Нахождение тупиковых форм.</H3>'+
           (method==0?'<p>Обозначения:<UL><LI>Единицы ДНФ, покрываемые импликантами СкДНФ, обозначаются "+".Импликанты, попадающие в ядро помечаются "*".</LI><LI>Единицы функции, которые покрываются только какой-то одной импликантой из системы простых импликант, помечаются “>”.</LI><LI>Единицы функции, покрываемые ядром, но не покрываемые только какой-то одной импликантой из системы простых импликант, помечаются “>>”.</UL>' : '')+
-          (method==1?'<p>Обозначения:<table><tr><td><img src="imgs/ker.png"></td><td>Клетки, покрываемые ядром<tr><td><img src="imgs/exker.png"><td>Клетки, которые покрываются только одной компактной группой наибольшей размерности.<tr><td><img src="imgs/fed.png"><td>Клетки, соответствующие единичным наборам функции.</table>' : '')+
+          (method==1?'<p>Обозначения:' +
+                     '<table>' + 
+                     '<tr><td><img src="imgs/ker.png"></td><td>Клетки, покрываемые ядром</td></tr>' + 
+                     '<tr><td><img src="imgs/exker.png"></td><td>Клетки, которые покрываются только одной компактной группой наибольшей размерности.</td></tr>' +
+                     '<tr><td><img src="imgs/fed.png"></td><td>Клетки, соответствующие единичным наборам функции.</td></tr>' +
+                     '</table>' : '')+
           (method==2?'' : '')+
 	  a;
 
@@ -184,10 +189,10 @@ function minimization_getanalyse(){
   }
 
   var tz;
-  t = '<table class="valtable" cellpadding=0 cellspacing=0><caption>Общая таблица истинности</caption><tr><td class="top">Набор';
+  t = '<table class="valtable" cellpadding=0 cellspacing=0><caption>Общая таблица истинности</caption><tr><td class="top">Набор</td>';
   t+= '<td class="top" width="60">Исходная</td>';
   for(i=0;i<b.length;i++)
-    t+= '<td class="top" width="'+60*this.MDNF[i].length+'" colspan="'+this.MDNF[i].length+'">'+b[i];
+    t+= '<td class="top" width="'+60*this.MDNF[i].length+'" colspan="'+this.MDNF[i].length+'">'+b[i]+'</td>';
 
   c = new cube( Math.pow(2,gl.varscount)-1 );
   t+='<tr>';
@@ -215,7 +220,7 @@ function minimization_getanalyse(){
           t+= '<td>1</td>';
         else
           t+= '<td>0</td>';
-    t += '</tr'>
+    t += '</tr>';
   }
   t+='</table>';
 
@@ -368,12 +373,12 @@ function minimization_findZ(method){
   var step=0;
   
   // 1.
-  if(method==2) html += "<table class=simple><tr><td>K(f) = <td>"+Cstep.tocset(1,1);
+  if(method==2) html += "<table class=simple><tr><td>K(f) = </td><td>"+Cstep.tocset(1,1)+"</td>";
 
   // 2.
   Cstep.deletesubcubes();
 
-  if(method==2) html += "<td> => C<sub>"+step+"</sub> =><td>"+Cstep.tocset(1,1)+'</table>';
+  if(method==2) html += "<td> => C<sub>"+step+"</sub> =></td><td>"+Cstep.tocset(1,1)+'</td></tr></table>';
 
   // 3 + 4 + 5 + 6.2
   var i,j,dim,d,t1,t2,t3,haveabsorb;
@@ -388,7 +393,7 @@ function minimization_findZ(method){
     for(i=0;i<Cstep.a.length;i++)
       absorb[i] = 0;
     
-    if(method==0) t1='<table cellspacing=0 class="constable"><tr><td class="top">Номера скл.<td class="top">Результат склеивания';
+    if(method==0) t1='<table cellspacing=0 class="constable"><tr><td class="top">Номера скл.<td class="top">Результат склеивания</td>';
     haveabsorb=0;
 
     for(i=0;i<Cstep.a.length;i++)
@@ -421,16 +426,16 @@ function minimization_findZ(method){
     if(method==2) html+= build_cubes_table(Cstep,stable,step);
     if(method==0){
 	t1+= '</table>';
-        t2 = '<table cellspacing=0 class=constable><tr><td class="top">No<td class="top">Эл. Конъюнкция<td class="top">Поглощение';
+        t2 = '<table cellspacing=0 class=constable><tr><td class="top">No</td><td class="top">Эл. Конъюнкция</td><td class="top">Поглощение</td>';
         for(i=0;i<Cstep.a.length;i++)
-          t2+='<tr><td>'+(i+1)+'</td><td>'+Cstep.a[i].toconj()+'</td><td>'+(absorb[i]==1?'+': (OPERA?'':'-') ) + '</td>';
+          t2+='<tr><td>'+(i+1)+'</td><td>'+Cstep.a[i].toconj()+'</td><td>'+(absorb[i]==1?'+': (OPERA?'':'-') ) + '</td></tr>';
 	t2+= '</table>';
         if(Zstep.isempty())
           t3 = '<p>На данном шаге все импликанты участвовали в операциях попарного неполного склеивания и были поглощены своими собственными частями. Поэтому простые импликанты на этом шаге не получены.';
         else
   	  t3 = '<p>В результате на данном шаге получаем простые импликанты:<br><SAMP>'+Zstep.todnf2()+'</SAMP>';
         
-	html+= '<center><table class=consabstable><tr><td>'+t2+'</td><td>'+(haveabsorb==1?t1:'')+'</td></tr></table></center>'+t3+'<br>';
+	html+= '<center><table class="consabstable"><tr><td>'+t2+'</td><td>'+(haveabsorb==1?t1:'')+'</td></tr></table></center>'+t3+'<br>';
     }
     
     if(method==2){
@@ -504,9 +509,9 @@ function minimization_extraction(Zstep,L,E,method,startstep){
     L.deletemarks();
 
     if(method==2){
-      tb = '<table cellpadding=0 cellspacing=0 class=mintable><caption>Таблица операции вычитания</caption><tr><td class="top">'+(OPERA?"":"<br>");
+      tb = '<table cellpadding=0 cellspacing=0 class=mintable><caption>Таблица операции вычитания</caption><tr><td class="top">'+(OPERA?"":"<br>")+'</td>';
       for(i=0;i<Zstep.a.length;i++)
-        tb += '<td class="top">'+Zstep.a[i].tocube();
+        tb += '<td class="top">'+Zstep.a[i].tocube()+'</td>';
       tb+='<td>';
     }
 
@@ -529,7 +534,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
           tb += (i==j? '<td>-</td>' : '<td>'+c.tocset(2)+'</td>' );
       }
       if(method==2)
-        tb += (c.isempty()? '<td class="formark">' :'<td class="formark">v');
+        tb += (c.isempty()? '<td class="formark"></td>' :'<td class="formark">v</td>');
 
       cinter=c.intercset(L);
       if(!c.isempty() && !cinter.isempty() ){
@@ -554,17 +559,17 @@ function minimization_extraction(Zstep,L,E,method,startstep){
       html+="E<sub>"+step+"</sub>:"+Estep.tocset(1,1)+'<br>L<sub>'+(step+1)+'</sub>=L<sub>'+step+'</sub>#E<sub>'+step+'</sub>';
    
     if(method==2){
-      tb = '<table cellpadding=0 cellspacing=0 class=mintable><caption>Получение L<sub>'+(step+1)+'</sub>:</caption><tr><td>'+(OPERA?"":"<br>");
+      tb = '<table cellpadding=0 cellspacing=0 class=mintable><caption>Получение L<sub>'+(step+1)+'</sub>:</caption><tr><td>'+(OPERA?"":"<br>")+'</td>';
       for(i=0;i<Estep.a.length;i++)
-        tb += '<td>'+Estep.a[i].tocube();
-      tb+='<tr><td>'+L.tocset(2);
+        tb += '<td>'+Estep.a[i].tocube()+'</td>';
+      tb+='<tr><td>'+L.tocset(2)+'</td>';
     }
 
     isres = Estep.a.length>0;
     for(i=0;i<Estep.a.length;i++){
       L = L.subtrcube(Estep.a[i]);
       if(method==2)
-        tb += '<td>'+L.tocset(2);
+        tb += '<td>'+L.tocset(2)+'</td>';
       E.a.push(Estep.a[i]);
     }
 
@@ -672,11 +677,13 @@ function minimization_extraction(Zstep,L,E,method,startstep){
 function build_cubes_table(Cstep,stable,step){// Cstep для левых и верхних полей
   var html='<table cellspacing=0 cellpadding=0 class="cubestable"><caption>Таблица операции C<sub>'+step+'</sub>*C<sub>'+step+'</sub></caption><tr><td class="top" nowrap>';
   for(var i=0;i<Cstep.a.length;i++)
-    html+='<td class="top" nowrap>'+Cstep.a[i].tocube();
+    html+='<td class="top" nowrap>'+Cstep.a[i].tocube()+'</td>';
   for(i=0;i<Cstep.a.length;i++){
-    html+='<tr><td class="top" nowrap>'+Cstep.a[i].tocube();
+    html+='<tr>';
+    html += '<td class="top" nowrap>'+Cstep.a[i].tocube()+'</td>';
     for(j=0;j<Cstep.a.length;j++)
-      html+='<td>'+stable[i][j];
+      html+='<td>'+stable[i][j]+'</td>';
+    html += '</tr>';
   }
   html+='</table>';
   return html+'<br>';
@@ -687,13 +694,13 @@ function buildtable(z,c,ker){
   var t='<table cellpadding=0 cellspacing=0 class=mintable><tr><td>';
   var pt,pp,pz,zz;
   for(i=0;i<c.a.length;i++)
-    t += "<td>"+c.a[i].toconj( c.a.length>5 ); 
+    t += "<td>"+c.a[i].toconj( c.a.length>5 )+"</td>"; 
   for(i=0;i<z.a.length;i++){
-    pp = "<td>"+z.a[i].toconj();
+    pp = "<td>"+z.a[i].toconj()+"</td>";
     pt = '<tr>';
     for(j=0;j<c.a.length;j++){
       zz  = c.a[j].mark=='>' && z.a[i].mark == '*' && c.a[j].issub(z.a[i]);
-      pp += (zz? '<td class="ker">' : '<td>')+( c.a[j].issub(z.a[i]) ? '+' : (OPERA?"":"<br>") );
+      pp += (zz? '<td class="ker">' : '<td>')+( c.a[j].issub(z.a[i]) ? '+' : (OPERA?"":"<br>") ) + '</td>';
     }
    if(z.a[i].mark == '*' )
      pt = '<tr class="toker">';
@@ -727,12 +734,12 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
     }
 
     t+='<table class="karno">';
-    t+='<tr><td><img src="imgs/karno32.png">';
+    t+='<tr><td><img src="imgs/karno32.png"></td>';
     for(i=0;i<4;i++)
       t+='<td class="top">'+cc[i];
     for(i=0;i<4;i++){
       t+='<tr>';
-      t+='<td class="top">'+cc[i];
+      t+='<td class="top">'+cc[i]+'</td>';
       for(j=0;j<4;j++){
         c = new cube( b[i][j]*z+k );
 	if( !K.intercube(c).isempty() ){
@@ -743,15 +750,15 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
 
           inker = !ker.intercube(c).isempty();
           if(ex && inker)
-            t+= '<td><img src="imgs/exker.png">';
+            t+= '<td><img src="imgs/exker.png"></td>';
           if(ex && !inker)
-            t+= '<td><img src="imgs/ex.png">';
+            t+= '<td><img src="imgs/ex.png"></td>';
           if(!ex && inker)
-            t+= '<td><img src="imgs/ker.png">';
+            t+= '<td><img src="imgs/ker.png"></td>';
           if(!ex && !inker)
-            t+= '<td><img src="imgs/fed.png">';
+            t+= '<td><img src="imgs/fed.png"></td>';
         }else{
-	  t+=  (OPERA?'<td>':'<td><br>');
+	  t+=  '<td>' + (OPERA?'':'<br>') + '</td>';
         }
       }
     }
