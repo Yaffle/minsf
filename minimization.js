@@ -702,7 +702,7 @@ function buildtable(z,c,ker){
   var t='<table cellpadding="0" cellspacing="0" class="mintable"><tr><td></td>';
   var pt,pp,pz,zz;
   for(i=0;i<c.a.length;i++)
-    t += "<td>"+c.a[i].toconj( c.a.length>5 )+"</td>"; 
+    t += "<td>" + (c.a.length > 5 ? "<div class=\"rotated\">" : "") + c.a[i].toconj() + (c.a.length > 5 ? "</div>" : "") + "</td>"; 
   t+='</tr>';
   for(i=0;i<z.a.length;i++){
     pp = "<td>"+z.a[i].toconj()+"</td>";
@@ -728,10 +728,10 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
 
   var b = new Array(new Array(0,4,12,8),new Array(1,5,13,9),new Array(3,7,15,11),new Array(2,6,14,10));
   var cc = new Array('00','01','11','10');
-  var a = new Array(	'<img width="14" src="imgs/nx.png"><sub>5</sub><img width="14" src="imgs/nx.png"><sub>6</sub>',
-			'<img width="14" src="imgs/nx.png"><sub>5</sub><img width="14" src="imgs/x.png"><sub>6</sub>',
-			'<img width="14" src="imgs/x.png"><sub>5</sub><img width="14" src="imgs/nx.png"><sub>6</sub>',
-			'<img width="14" src="imgs/x.png"><sub>5</sub><img width="14" src="imgs/x.png"><sub>6</sub>');
+  var a = new Array(	'<var style="text-decoration:overline">x</var><sub>5</sub><var style="text-decoration:overline">x</var><sub>6</sub>',
+			'<var style="text-decoration:overline">x</var><sub>5</sub><var>x</var><sub>6</sub>',
+			'<var>x</var><sub>5</sub><var style="text-decoration:overline">x</var><sub>6</sub>',
+			'<var>x</var><sub>5</sub><var>x</var><sub>6</sub>');
   var i,j,k,c,ex,inker;
   var t='<center><table class="forkarno">';
   for(k=0;k<z;k++){

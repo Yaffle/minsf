@@ -160,28 +160,18 @@ function makernum(n){
 function cube_toconj(rotated){
   var x;
   if(rotated){
-	  var t="";
-	  var a="uzyx";
-	  for(var i=gl.varscount-1;i>=0;i--){
-	    x = ((this.n >>> (i*2)) & 3);
-	    if(x!=0)
-	      if(x==1)
-	        t = (gl.varscount>4? '<br>'+makernum(gl.varscount-i)+'<img width="24" src="imgs/rnx.png">' : '<br><img width="24" src="imgs/rn'+a.charAt(i)+'.png">') +t;
-	      else
-	        t = (gl.varscount>4? '<br>'+makernum(gl.varscount-i)+'<img width="24" src="imgs/rx.png">' : '<br><img width="24" src="imgs/r'+a.charAt(i)+'.png">') + t;
-	  }
-	  return '<span class="conj">'+(this.mark.replace(/>/g, '&gt;'))+t+'</span>';
+    throw new RangeError();
   }
 
   var t="";
   var a="uzyx";
   for(var i=gl.varscount-1;i>=0;i--){
-    x = ((this.n >>> i*2) & 3);
+    x = ((this.n >>> (i*2)) & 3);
     if(x!=0)
       if(x==1)
-        t += (gl.varscount>4? '<img width="16" src="imgs/nx.png">'+(gl.varscount-i) : '<img width="16" src="imgs/n'+a.charAt(i)+'.png">');
+        t += (gl.varscount>4? '<var style="text-decoration:overline">x</var>' + '<sub>'+(gl.varscount-i)+'</sub>' : '<var style="text-decoration:overline">' + a.charAt(i) + '</var>');
       else
-        t += (gl.varscount>4? '<img width="16" src="imgs/x.png">'+(gl.varscount-i) : '<img width="16" src="imgs/'+a.charAt(i)+'.png">');
+        t += (gl.varscount>4? '<var>x</var>'+'<sub>'+(gl.varscount-i)+'</sub>' : '<var>' + a.charAt(i) + '</var>');
   }
   t += '<sup>'+ (this.mark.replace(/>/g, '&gt;')) +'</sup>';
   return '<span class="conj">'+t+'</span>';
