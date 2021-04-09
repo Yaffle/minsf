@@ -101,32 +101,33 @@ function minimization_gettruthtable(st){
   var n = Math.pow(2,gl.varscount);
   var c = new cube( n-1 );
 
-  var html= '<table align=center class="truth" cellspacing=0><caption>Таблица истинности исходной функции</caption>';
-  html += '<tr><td class="top">Набор><td class="top" style="width: 48px;" rowspan=2>Значение исходной функции<td class="top">Набор><td class="top" style="width: 48px;" rowspan=2>Значение исходной функции<tr><td class="top">'+c.toconj()+'<td class="top">'+c.toconj();
+  var html= '<table align="center" class="truth" cellspacing="0"><caption>Таблица истинности исходной функции</caption>';
+  html += '<thead><tr><th class="top">Набор</th><th class="top" style="width: 48px;" rowspan=2>Значение исходной функции</th><th class="top">Набор</th><th class="top" style="width: 48px;" rowspan="2">Значение исходной функции</th></tr><tr><th class="top">'+c.toconj()+'</th><th class="top">'+c.toconj() + '</th></tr></thead>';
 
   var n = n/2;
   for(var j=0;j<n;j++){
     html+= '<tr>';
 
     c = new cube(j);
-    html+='<td>'+c.tocube();
+    html+='<td>'+c.tocube()+'</td>';
     if(!this.L.intercube(c).isempty())
-      html+='<td>1';
+      html+='<td>1</td>';
     else
       if(!this.D.intercube(c).isempty())
-        html+='<td>?';
+        html+='<td>?</td>';
       else
-        html+='<td>0';
+        html+='<td>0</td>';
 
     c = new cube(j+n);
-    html+='<td>'+c.tocube();
+    html+='<td>'+c.tocube()+'</td>';
     if(!this.L.intercube(c).isempty())
-      html+='<td>1';
+      html+='<td>1</td>';
     else
       if(!this.D.intercube(c).isempty())
-        html+='<td>?';
+        html+='<td>?</td>';
       else
-        html+='<td>0';
+        html+='<td>0</td>';
+    html += '</tr>';
   }
 
   html += '</table>';
@@ -150,8 +151,8 @@ function minimization_getminimization(st,det,method){
   a      = this.extraction(Z,this.L,new cubesset(),method,0);		//2
 
   html += '<H3>Нахождение тупиковых форм.</H3>'+
-          (method==0?'<p>Обозначения:<UL><LI>Единицы ДНФ, покрываемые импликантами СкДНФ, обозначаются "+".Импликанты, попадающие в ядро помечаются "*".<LI>Единицы функции, которые покрываются только какой-то одной импликантой из системы простых импликант, помечаются “>”.<LI>Единицы функции, покрываемые ядром, но не покрываемые только какой-то одной импликантой из системы простых импликант, помечаются “>>”.</UL>' : '')+
-          (method==1?'<p>Обозначения:<table><tr><td><img src="imgs/ker.png"><td>Клетки, покрываемые ядром<tr><td><img src="imgs/exker.png"><td>Клетки, которые покрываются только одной компактной группой наибольшей размерности.<tr><td><img src="imgs/fed.png"><td>Клетки, соответствующие единичным наборам функции.</table>' : '')+
+          (method==0?'<p>Обозначения:<UL><LI>Единицы ДНФ, покрываемые импликантами СкДНФ, обозначаются "+".Импликанты, попадающие в ядро помечаются "*".</LI><LI>Единицы функции, которые покрываются только какой-то одной импликантой из системы простых импликант, помечаются “>”.</LI><LI>Единицы функции, покрываемые ядром, но не покрываемые только какой-то одной импликантой из системы простых импликант, помечаются “>>”.</UL>' : '')+
+          (method==1?'<p>Обозначения:<table><tr><td><img src="imgs/ker.png"></td><td>Клетки, покрываемые ядром<tr><td><img src="imgs/exker.png"><td>Клетки, которые покрываются только одной компактной группой наибольшей размерности.<tr><td><img src="imgs/fed.png"><td>Клетки, соответствующие единичным наборам функции.</table>' : '')+
           (method==2?'' : '')+
 	  a;
 
@@ -184,35 +185,37 @@ function minimization_getanalyse(){
 
   var tz;
   t = '<table class="valtable" cellpadding=0 cellspacing=0><caption>Общая таблица истинности</caption><tr><td class="top">Набор';
-  t+= '<td class="top" width="60">Исходная';
+  t+= '<td class="top" width="60">Исходная</td>';
   for(i=0;i<b.length;i++)
     t+= '<td class="top" width="'+60*this.MDNF[i].length+'" colspan="'+this.MDNF[i].length+'">'+b[i];
 
   c = new cube( Math.pow(2,gl.varscount)-1 );
-  t+='<tr><td class="top">'+c.toconj();
-  t+='<td class="top">f<sub>0</sub>';
+  t+='<tr>';
+  t+='<td class="top">'+c.toconj()+'</td>';
+  t+='<td class="top">f<sub>0</sub></td>';
   for(i=0;i<b.length;i++)
     for(k=0;k<this.MDNF[i].length;k++)
-      t+= '<td class="top">f<sub>'+(k+i+1)+'</sub>';
-
+      t+= '<td class="top">f<sub>'+(k+i+1)+'</sub></td>';
+  t+='</tr>';
   for(j=0;j<n;j++){
     c = new cube(j);
-    t+='<tr><td>'+c.tocube();
+    t+='<tr>';
+    t+='<td>'+c.tocube()+'</td>';
 
     // исходная...
-    if(!this.L.intercube(c).isempty()) t+='<td>1';
+    if(!this.L.intercube(c).isempty()) t+='<td>1</td>';
     else
-      if(!this.D.intercube(c).isempty()) t+='<td>?';
+      if(!this.D.intercube(c).isempty()) t+='<td>?</td>';
       else
-        t+='<td>0';
+        t+='<td>0</td>';
 
     for(i=0;i<3;i++)
       for(x=0;x<this.MDNF[i].length;x++)
         if(!this.MDNF[i][x].intercube(c).isempty())
-          t+= '<td>1';
+          t+= '<td>1</td>';
         else
-          t+= '<td>0';
-    
+          t+= '<td>0</td>';
+    t += '</tr'>
   }
   t+='</table>';
 
@@ -232,16 +235,16 @@ function minimization_getcontents(){
   var html = ''+
 	'<H2>Содержание</H2>'+
 	'<OL>'+
-	'<LI><a href="#1">Постановка задачи</a>'+
+	'<LI><a href="#1">Постановка задачи</a></LI>'+
 	'<LI><a href="#2">Решение задачи</a>'+
-	'<OL>'+
-	'<LI><a href="#21">Анализ переключательной функции</a>'+
-	'<LI><a href="#22">Метод Квайна</a>'+
-	'<LI><a href="#23">Карты Карно</a>'+
-	'<LI><a href="#24">Кубические покрытия</a>'+
-	'</OL>'+
-	'<LI><a href="#3">Анализ полученных результатов</a>'+
-	'<LI><a href="#4">Список литературы</a>'+
+    '<OL>'+
+    '<LI><a href="#21">Анализ переключательной функции</a></LI>'+
+    '<LI><a href="#22">Метод Квайна</a></LI>'+
+    '<LI><a href="#23">Карты Карно</a></LI>'+
+    '<LI><a href="#24">Кубические покрытия</a></LI>'+
+    '</OL></LI>'+
+	'<LI><a href="#3">Анализ полученных результатов</a></LI>'+
+	'<LI><a href="#4">Список литературы</a></LI>'+
 	'</OL>';
   return html;
 }
@@ -261,10 +264,10 @@ function minimization_getpart1(){
 	'<SAMP>y => ' + ss +' </SAMP>'+
 	'<p>Необходимо выполнить следующие задачи:'+
 	'<OL>'+
-	'<LI>Доопределить функцию нулями, минимизировать полученную функцию методом Квайна;'+
-	'<LI>Доопределить функцию единицами и произвести минимизацию, используя карты Карно;'+
-	'<LI>Минимизировать исходную функцию методом кубических покрытий;'+
-	'<LI>Проанализировать полученные результаты;'+
+	'<LI>Доопределить функцию нулями, минимизировать полученную функцию методом Квайна;</LI>'+
+	'<LI>Доопределить функцию единицами и произвести минимизацию, используя карты Карно;</LI>'+
+	'<LI>Минимизировать исходную функцию методом кубических покрытий;</LI>'+
+	'<LI>Проанализировать полученные результаты;</LI>'+
 	'</OL>';
   return html;
 }
@@ -403,7 +406,7 @@ function minimization_findZ(method){
 
         if(cu!=-1 && cu.dimen() > dim){
           Cstep1.addcube(cu);// В Cstep1 Помещаем все получившиеся кубы, большей размерности!
-          if(method==0) t1+= '<tr><td>'+(i+1)+' - '+(j+1)+'<td>'+cu.toconj();
+          if(method==0) t1+= '<tr><td>'+(i+1)+' - '+(j+1)+'</td><td>'+cu.toconj() + '</td>';
 	  haveabsorb=1;
 	  absorb[i]=1;
 	  absorb[j]=1;
@@ -420,14 +423,14 @@ function minimization_findZ(method){
 	t1+= '</table>';
         t2 = '<table cellspacing=0 class=constable><tr><td class="top">No<td class="top">Эл. Конъюнкция<td class="top">Поглощение';
         for(i=0;i<Cstep.a.length;i++)
-          t2+='<tr><td>'+(i+1)+'<td>'+Cstep.a[i].toconj()+'<td>'+(absorb[i]==1?'+': (OPERA?'':'-') );
+          t2+='<tr><td>'+(i+1)+'</td><td>'+Cstep.a[i].toconj()+'</td><td>'+(absorb[i]==1?'+': (OPERA?'':'-') ) + '</td>';
 	t2+= '</table>';
         if(Zstep.isempty())
           t3 = '<p>На данном шаге все импликанты участвовали в операциях попарного неполного склеивания и были поглощены своими собственными частями. Поэтому простые импликанты на этом шаге не получены.';
         else
   	  t3 = '<p>В результате на данном шаге получаем простые импликанты:<br><SAMP>'+Zstep.todnf2()+'</SAMP>';
         
-	html+= '<center><table class=consabstable><tr><td>'+t2+'<td>'+(haveabsorb==1?t1:'')+'</table></center>'+t3+'<br>';
+	html+= '<center><table class=consabstable><tr><td>'+t2+'</td><td>'+(haveabsorb==1?t1:'')+'</td></tr></table></center>'+t3+'<br>';
     }
     
     if(method==2){
@@ -523,7 +526,7 @@ function minimization_extraction(Zstep,L,E,method,startstep){
         if(i!=j)
           c = c.subtrcube(Zstep.a[j]);
         if(method==2)
-          tb += (i==j? '<td>-' : '<td>'+c.tocset(2) );
+          tb += (i==j? '<td>-</td>' : '<td>'+c.tocset(2)+'</td>' );
       }
       if(method==2)
         tb += (c.isempty()? '<td class="formark">' :'<td class="formark">v');
@@ -760,12 +763,12 @@ function buildkarno(K,ker){ //единицы, экстримали, ядро
 
 function buildtableforcubes(z,c,newz){
   var i,j;
-  var t='<table cellpadding=0 cellspacing=0 class=mintable><tr><td class="top">';
+  var t='<table cellpadding=0 cellspacing=0 class=mintable><tr><td class="top" style="min-width: 8em;">&nbsp;</td>';
   var pt,pp,pz,zz;
   for(i=0;i<c.a.length;i++)
-    t += '<td class="top">'+c.a[i].tocube(true);
+    t += '<td class="top">'+c.a[i].tocube(true) + '</td>';
   for(i=0;i<z.a.length;i++){
-    pp = '<td class="top">'+z.a[i].tocube();
+    pp = '<td class="top">'+z.a[i].tocube() + '</td>';
     pt = '<tr>';
     for(j=0;j<c.a.length;j++){
       zz  = c.a[j].mark=='>' && z.a[i].mark == '*' && c.a[j].issub(z.a[i]);
