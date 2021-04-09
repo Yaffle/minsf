@@ -170,7 +170,7 @@ function cube_toconj(rotated){
 	      else
 	        t = (gl.varscount>4? '<br>'+makernum(gl.varscount-i)+'<img width="24" src="imgs/rx.png">' : '<br><img width="24" src="imgs/r'+a.charAt(i)+'.png">') + t;
 	  }
-	  return '<span class="conj">'+this.mark+t+'</span>';
+	  return '<span class="conj">'+(this.mark.replace(/>/g, '&gt;'))+t+'</span>';
   }
 
   var t="";
@@ -183,7 +183,7 @@ function cube_toconj(rotated){
       else
         t += (gl.varscount>4? '<img width="16" src="imgs/x.png">'+(gl.varscount-i) : '<img width="16" src="imgs/'+a.charAt(i)+'.png">');
   }
-  t += '<sup>'+this.mark+'</sup>';
+  t += '<sup>'+ (this.mark.replace(/>/g, '&gt;')) +'</sup>';
   return '<span class="conj">'+t+'</span>';
 }
 
@@ -364,7 +364,7 @@ function cubesset_tocset(tocolumn,showbraces){
       for(var i=1;i<this.a.length;i++)
         r+='<br>'+this.a[i].tocube();
     }
-    r+='</td>'+(showbraces?'<td><img src="imgs/rbrace.png" width=8></td>':'')+'</table>';
+    r+='</td>'+(showbraces?'<td><img src="imgs/rbrace.png" width=8></td>':'')+'</tr></table>';
   }else{
     r=(showbraces?'{ ':'')+this.a[0].tocube();
     for(var i=1;i<this.a.length;i++)
